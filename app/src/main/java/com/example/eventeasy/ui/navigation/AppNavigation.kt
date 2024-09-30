@@ -9,6 +9,7 @@ import com.example.eventeasy.ui.screen.ResetPasswordScreen
 import com.example.eventeasy.ui.screen.SignInScreen
 import com.example.eventeasy.ui.screen.SignUpScreen
 import com.example.eventeasy.ui.screen.SplashScreen
+import com.example.eventeasy.ui.screen.VerificationScreen
 
 @Composable
 fun AppNavigation(navController: NavHostController) {
@@ -17,5 +18,6 @@ fun AppNavigation(navController: NavHostController) {
         composable("signin") { SignInScreen(navController = navController) }
         composable("signup") { SignUpScreen(navController = navController) }
         composable("resetpassword") { ResetPasswordScreen(navController = navController) }
+        composable("verification") { VerificationScreen(navController = navController) }
     }
 }

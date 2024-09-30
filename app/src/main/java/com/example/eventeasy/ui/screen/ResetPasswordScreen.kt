@@ -69,6 +69,7 @@ fun ResetPasswordScreen(navController: NavController, authViewModel: AuthViewMod
         Button(
             onClick = {
                 // Lógica para enviar el correo de recuperación
+                navController.navigate("verification")
             },
             modifier = Modifier
                 .fillMaxWidth()
