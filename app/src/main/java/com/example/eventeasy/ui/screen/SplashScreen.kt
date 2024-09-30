@@ -1,4 +1,3 @@
-// SplashScreen.kt
 package com.example.eventeasy.ui.screen
 
 import AuthViewModel

@@ -1,10 +1,10 @@
-// AppNavigation.kt
 package com.example.eventeasy.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.eventeasy.ui.screen.ExploreScreen
 import com.example.eventeasy.ui.screen.ResetPasswordScreen
 import com.example.eventeasy.ui.screen.SignInScreen
 import com.example.eventeasy.ui.screen.SignUpScreen
@@ -19,5 +19,6 @@ fun AppNavigation(navController: NavHostController) {
         composable("signup") { SignUpScreen(navController = navController) }
         composable("resetpassword") { ResetPasswordScreen(navController = navController) }
         composable("verification") { VerificationScreen(navController = navController) }
+        composable("explore") { ExploreScreen(navController = navController) }
     }
 }

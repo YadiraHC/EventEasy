@@ -126,7 +126,8 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
 
         Button(
             onClick = {
-                authViewModel.signIn(email, password)
+                //authViewModel.signIn(email, passwosrd)
+                navController.navigate("explore")
             },
             modifier = Modifier
                 .fillMaxWidth()

@@ -28,17 +28,17 @@ val Typography = androidx.compose.material3.Typography(
     headlineLarge = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 35.sp,
-        color = Color(0xFF120D26) // Color del texto "EventEasy" (#120D26)
+        color = Color(0xFF120D26) 
     ),
     titleMedium = TextStyle(
         fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
-        fontSize = 24.sp,  // Tamaño para "Sign In"
-        color = Color(0xFF120D26) // Color del título "Sign In" (#120D26)
+        fontSize = 24.sp,  
+        color = Color(0xFF120D26) 
     ),
     bodyMedium = TextStyle(
         fontWeight = androidx.compose.ui.text.font.FontWeight.Normal,
-        fontSize = 14.sp,  // Tamaño para los campos de texto como "abc@email.com"
-        color = Color(0xFF747688) // Color gris para el texto de los campos de entrada (#747688)
+        fontSize = 14.sp,  
+        color = Color(0xFF747688) 
     ),
     bodyLarge = TextStyle(
         fontWeight = androidx.compose.ui.text.font.FontWeight.Medium,

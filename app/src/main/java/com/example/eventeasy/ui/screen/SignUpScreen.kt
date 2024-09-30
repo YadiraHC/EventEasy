@@ -141,7 +141,7 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
         Button(
             onClick = {
                 // Lógica de registro
-                navController.navigate("signin")
+                navController.navigate("verification")
             },
             modifier = Modifier
                 .fillMaxWidth()
