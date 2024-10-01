@@ -108,8 +108,14 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
                 Switch(
                     checked = rememberMeChecked,
                     onCheckedChange = { rememberMeChecked = it },
-                    colors = SwitchDefaults.colors(checkedThumbColor = Color(0xFF5669FF))
+                    colors = SwitchDefaults.colors(
+                        checkedThumbColor = Color.White,
+                        checkedTrackColor = Color(0xFF5669FF),
+                        uncheckedThumbColor = Color.White,
+                        uncheckedTrackColor = Color(0xFFB0B0B0)
+                    )
                 )
+
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(text = "Remember Me", color = Color(0xFF120D26))
             }
@@ -157,10 +163,10 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
             colors = ButtonDefaults.buttonColors(containerColor = Color.White)
         ) {
 
-            Icon(
+            Image(
                 painter = painterResource(id = com.example.eventeasy.R.drawable.google),
                 contentDescription = "Google Icon",
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(22.dp)
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(text = "Login with Google", style = MaterialTheme.typography.bodyLarge)

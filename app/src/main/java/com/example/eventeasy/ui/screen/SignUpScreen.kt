@@ -1,6 +1,7 @@
 package com.example.eventeasy.ui.screen
 
 import AuthViewModel
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -17,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.res.painterResource
+import com.example.eventeasy.R
 
 @Composable
 fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = viewModel()) {
@@ -172,10 +175,10 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
             shape = RoundedCornerShape(15.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.White)
         ) {
-            Icon(
-                imageVector = Icons.Default.Email,
+            Image(
+                painter = painterResource(id = R.drawable.google),
                 contentDescription = "Google Icon",
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(22.dp)
             )
             Spacer(modifier = Modifier.width(8.dp))
 

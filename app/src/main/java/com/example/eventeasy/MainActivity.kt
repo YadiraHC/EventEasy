@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
             EventEasyTheme {
                 val navController = rememberNavController()
 
-                Surface(color = Color.White) {
+                Surface(color = MaterialTheme.colorScheme.background) {
                     Column(modifier = Modifier.fillMaxSize()) {
                         Box(modifier = Modifier.weight(1f)) {
                             AppNavigation(navController = navController)
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
                         // Mostrar el BottomNavBar solo en las pantallas adecuadas
                         val currentRoute = getCurrentRoute(navController)
                         if (currentRoute in listOf("explore", "favorites", "events", "messages", "profile")) {
-                            BottomNavBar(navController = navController)
+                            BottomNavBar(navController = navController, )
                         }
                     }
                 }
