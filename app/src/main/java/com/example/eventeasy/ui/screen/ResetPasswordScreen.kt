@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.res.stringResource
+import com.example.eventeasy.R
 
 @Composable
 fun ResetPasswordScreen(navController: NavController, authViewModel: AuthViewModel = viewModel()) {
@@ -40,7 +42,7 @@ fun ResetPasswordScreen(navController: NavController, authViewModel: AuthViewMod
 
         Spacer(modifier = Modifier.height(30.dp))
         Text(
-            text = "Reset Password",
+            text = stringResource(id = R.string.reset_password),
             style = MaterialTheme.typography.titleMedium,
             color = Color(0xFF120D26),
             modifier = Modifier.align(Alignment.Start)
@@ -50,7 +52,7 @@ fun ResetPasswordScreen(navController: NavController, authViewModel: AuthViewMod
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("Email") },
+            label = { Text(stringResource(id = R.string.sign_in_email)) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Email,
@@ -78,7 +80,7 @@ fun ResetPasswordScreen(navController: NavController, authViewModel: AuthViewMod
             shape = RoundedCornerShape(15.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5669FF))
         ) {
-            Text(text = "Reset Password", color = Color.White, style = MaterialTheme.typography.bodyLarge)
+            Text(text = stringResource(id = R.string.reset), color = Color.White, style = MaterialTheme.typography.bodyLarge)
         }
 
         Spacer(modifier = Modifier.height(38.dp))
@@ -88,11 +90,11 @@ fun ResetPasswordScreen(navController: NavController, authViewModel: AuthViewMod
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "Remember your password?", color = Color(0xFF120D26))
+            Text(text = stringResource(id = R.string.remember_password), color = Color(0xFF120D26))
             TextButton(onClick = {
                 navController.navigate("signin")
             }) {
-                Text(text = "Sign in", color = Color(0xFF5669FF))
+                Text(text = stringResource(id = R.string.sign_in_here), color = Color(0xFF5669FF))
             }
         }
     }

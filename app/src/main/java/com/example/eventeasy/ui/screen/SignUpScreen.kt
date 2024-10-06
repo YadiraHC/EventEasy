@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.example.eventeasy.R
 
 @Composable
@@ -38,8 +39,8 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
         horizontalAlignment = Alignment.Start
     ) {
         Spacer(modifier = Modifier.height(30.dp))
-        Text(
-            text = "Sign up",
+
+        Text(text = stringResource(id = R.string.sign_up),
             style = MaterialTheme.typography.titleMedium,
             color = Color(0xFF120D26),
             modifier = Modifier.align(Alignment.Start)
@@ -49,7 +50,7 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
         OutlinedTextField(
             value = fullName,
             onValueChange = { fullName = it },
-            label = { Text("Full name") },
+            label = { Text(stringResource(id = R.string.full_name)) },
             textStyle = MaterialTheme.typography.bodyMedium,
             leadingIcon = {
                 Icon(
@@ -66,7 +67,7 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("Email") },
+            label = { Text(stringResource(id = R.string.sign_in_email))},
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Email,
@@ -86,7 +87,7 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Password") },
+            label = { Text(stringResource(id = R.string.password)) },
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
@@ -115,7 +116,7 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
         OutlinedTextField(
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
-            label = { Text("Confirm password") },
+            label = { Text(stringResource(id = R.string.confirm_password)) },
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
@@ -153,14 +154,14 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
             shape = RoundedCornerShape(15.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5669FF))
         ) {
-            Text(text = "Sign Up", color = Color.White, style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(id = R.string.sign_up), color = Color.White, style = MaterialTheme.typography.bodyLarge)
         }
 
         Spacer(modifier = Modifier.height(28.dp))
 
 
         Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-            Text(text = "OR", style = MaterialTheme.typography.bodyLarge)
+            Text(text = stringResource(id = R.string.or_label), style = MaterialTheme.typography.bodyLarge)
         }
 
         Spacer(modifier = Modifier.height(28.dp))
@@ -183,7 +184,7 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
             Spacer(modifier = Modifier.width(8.dp))
 
 
-            Text(text = "Login with Google", style = MaterialTheme.typography.bodyLarge)
+            Text(text =stringResource(id = R.string.sign_in_google), style = MaterialTheme.typography.bodyLarge)
         }
 
         Spacer(modifier = Modifier.height(23.dp))
@@ -192,11 +193,11 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Already have an account?", color = Color(0xFF120D26))
+                Text(text = stringResource(id = R.string.have_account), color = Color(0xFF120D26))
                 TextButton(onClick = {
                     navController.navigate("signin")
                 }) {
-                    Text(text = "Sign in", color = Color(0xFF5669FF))
+                    Text(text = stringResource(id = R.string.sign_in_button), color = Color(0xFF5669FF))
                 }
             }
         }

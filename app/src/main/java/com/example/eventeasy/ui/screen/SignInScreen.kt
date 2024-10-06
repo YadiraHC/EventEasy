@@ -21,6 +21,8 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
+import com.example.eventeasy.R
 
 @Composable
 fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = viewModel()) {
@@ -51,7 +53,7 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Sign in",
+            text = stringResource(id = R.string.sign_in_title),
             style = MaterialTheme.typography.titleMedium,
             color = Color(0xFF120D26),
             modifier = Modifier.align(Alignment.Start)
@@ -62,7 +64,7 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("Email") },
+            label = { Text(stringResource(id = R.string.sign_in_email)) },
             textStyle = MaterialTheme.typography.bodyMedium,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             modifier = Modifier
@@ -76,7 +78,7 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Password") },
+            label = { Text(stringResource(id = R.string.sign_in_password)) },
             textStyle = MaterialTheme.typography.bodyMedium,
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
@@ -96,7 +98,6 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
 
         Spacer(modifier = Modifier.height(16.dp))
 
-
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -115,24 +116,21 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
                         uncheckedTrackColor = Color(0xFFB0B0B0)
                     )
                 )
-
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "Remember Me", color = Color(0xFF120D26))
+                Text(text = stringResource(id = R.string.remember_me), color = Color(0xFF120D26))
             }
 
             TextButton(onClick = {
                 navController.navigate("resetpassword")
             }) {
-                Text(text = "Forgot Password?", color = Color(0xFF747688))
+                Text(text = stringResource(id = R.string.forgot_password), color = Color(0xFF747688))
             }
         }
-
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
             onClick = {
-                //authViewModel.signIn(email, passwosrd)
                 navController.navigate("explore")
             },
             modifier = Modifier
@@ -142,13 +140,13 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
             shape = RoundedCornerShape(15.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5669FF))
         ) {
-            Text(text = "Sign In", color = Color.White, style = MaterialTheme.typography.bodyLarge)
+            Text(text = stringResource(id = R.string.sign_in_button), color = Color.White, style = MaterialTheme.typography.bodyLarge)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-            Text(text = "OR", style = MaterialTheme.typography.bodyLarge)
+            Text(text = stringResource(id = R.string.or_label), style = MaterialTheme.typography.bodyLarge)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -162,14 +160,13 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
             shape = RoundedCornerShape(15.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.White)
         ) {
-
             Image(
-                painter = painterResource(id = com.example.eventeasy.R.drawable.google),
+                painter = painterResource(id = R.drawable.google),
                 contentDescription = "Google Icon",
                 modifier = Modifier.size(22.dp)
             )
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "Login with Google", style = MaterialTheme.typography.bodyLarge)
+            Text(text = stringResource(id = R.string.sign_in_google), style = MaterialTheme.typography.bodyLarge)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -179,11 +176,11 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Don't have an account?", color = Color(0xFF120D26))
+                Text(text = stringResource(id = R.string.dont_have_account), color = Color(0xFF120D26))
                 TextButton(onClick = {
                     navController.navigate("signup")
                 }) {
-                    Text(text = "Sign up", color = Color(0xFF5669FF))
+                    Text(text = stringResource(id = R.string.sign_up_here), color = Color(0xFF5669FF))
                 }
             }
         }

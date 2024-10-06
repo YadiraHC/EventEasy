@@ -1,0 +1,45 @@
+<!-- strings.xml for Spanish -->
+<resources>
+    <!-- General -->
+    <string name="app_name">EventEasy</string>
+
+    <!-- Splash Screen -->
+    <string name="splash_welcome">Bienvenido a EventEasy</string>
+
+    <!-- Sign In Screen -->
+    <string name="sign_in_title">Iniciar sesión</string>
+    <string name="sign_in_email">Correo electrónico</string>
+    <string name="sign_in_password">Contraseña</string>
+    <string name="sign_in_button">Iniciar sesión</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="remember_me">Recordarme</string>
+    <string name="dont_have_account">¿No tienes una cuenta?</string>
+    <string name="sign_up_here">Regístrate aquí</string>
+
+    <!-- Sign Up Screen -->
+    <string name="sign_up">Registrarse</string>
+    <string name="full_name">Nombre completo</string>
+    <string name="have_account">¿Tienes una cuenta? </string>
+    <string name="sign_up_button">Continuar</string>
+
+
+
+    <!-- Reset Screen -->
+    <string name="reset_password">Restaurar Contraseña</string>
+    <string name="reset">Restaurar</string>
+    <string name="remember_password">¿Recuerdas tu contraseña?</string>
+
+    <!-- Explore Screen -->
+    <string name="explore_search_placeholder">Buscar</string>
+    <string name="explore_best">Mejor</string>
+    <string name="explore_weddings">Bodas</string>
+    <string name="explore_sweet_15">Quinceañera</string>
+    <string name="explore_birthday_parties">Fiestas de cumpleaños</string>
+
+    <!-- Common Phrases -->
+    <string name="or_label">O</string>
+    <string name="sign_in_google">Inicia con Google</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirma tu contraseña</string>
+    <string name="sign_in_here">Inicia aquí</string>
+</resources>
