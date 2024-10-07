@@ -1,4 +1,4 @@
-package com.example.eventeasy.data.services
+package com.example.eventeasy.data.model.common
 
 data class ApiResponse(
     val status: String,

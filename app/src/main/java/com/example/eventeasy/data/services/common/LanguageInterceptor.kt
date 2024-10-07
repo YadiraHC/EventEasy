@@ -1,4 +1,4 @@
-package com.example.eventeasy.data.services
+package com.example.eventeasy.data.services.common
 
 import okhttp3.Interceptor
 import okhttp3.Response

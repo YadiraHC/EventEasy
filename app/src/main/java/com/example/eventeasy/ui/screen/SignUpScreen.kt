@@ -19,10 +19,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.eventeasy.R
-import com.example.eventeasy.data.services.ApiClient
-import com.example.eventeasy.data.services.ApiResponse
-import com.example.eventeasy.data.services.ApiService
-import com.example.eventeasy.data.services.SignUpRequest
+import com.example.eventeasy.data.model.auth.SignUpRequest
+import com.example.eventeasy.data.services.common.ApiClient
+import com.example.eventeasy.data.model.common.ApiResponse
+import com.example.eventeasy.data.services.auth.ApiService
 import com.example.eventeasy.viewmodel.AuthViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Call
