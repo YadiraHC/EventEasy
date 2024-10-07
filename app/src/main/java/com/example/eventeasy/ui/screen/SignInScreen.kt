@@ -1,9 +1,12 @@
 package com.example.eventeasy.ui.screen
 
-import AuthViewModel
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -15,14 +18,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.example.eventeasy.MainActivity
 import com.example.eventeasy.R
+import com.example.eventeasy.ui.components.LanguageDropMenu
+import com.example.eventeasy.viewmodel.AuthViewModel
 
 @Composable
 fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = viewModel()) {
@@ -31,21 +34,31 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
     var passwordVisibility by remember { mutableStateOf(false) }
     var rememberMeChecked by remember { mutableStateOf(false) }
 
+    // Estado para manejar el idioma seleccionado
+    var selectedLanguage by remember { mutableStateOf("select") } // Por defecto, opción inicial
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 28.dp)
             .padding(vertical = 16.dp),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
     ) {
 
+        LanguageDropMenu(selectedLanguage) { newLanguage ->
+            selectedLanguage = newLanguage
+            (navController.context as MainActivity).changeLanguage(newLanguage)
+            (navController.context as MainActivity).saveLanguagePreference(navController.context, newLanguage)
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
             Image(
-                painter = painterResource(id = com.example.eventeasy.R.drawable.logo),
+                painter = painterResource(id = R.drawable.logo),
                 contentDescription = "EventEasy Logo",
-                modifier = Modifier
-                    .size(143.dp),
+                modifier = Modifier.size(143.dp),
                 contentScale = ContentScale.Fit
             )
         }
@@ -67,9 +80,7 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
             label = { Text(stringResource(id = R.string.sign_in_email)) },
             textStyle = MaterialTheme.typography.bodyMedium,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp),
+            modifier = Modifier.fillMaxWidth().padding(0.dp),
             shape = RoundedCornerShape(12.dp)
         )
 
@@ -90,9 +101,7 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
                 }
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp),
+            modifier = Modifier.fillMaxWidth().padding(0.dp),
             shape = RoundedCornerShape(12.dp)
         )
 
@@ -133,10 +142,7 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
             onClick = {
                 navController.navigate("explore")
             },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-                .padding(horizontal = 30.dp),
+            modifier = Modifier.fillMaxWidth().height(56.dp).padding(horizontal = 30.dp),
             shape = RoundedCornerShape(15.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5669FF))
         ) {
@@ -144,7 +150,6 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-
         Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
             Text(text = stringResource(id = R.string.or_label), style = MaterialTheme.typography.bodyLarge)
         }

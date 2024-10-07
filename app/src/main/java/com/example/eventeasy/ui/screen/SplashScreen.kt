@@ -1,6 +1,6 @@
 package com.example.eventeasy.ui.screen
 
-import AuthViewModel
+
 import android.os.Handler
 import android.os.Looper
 import androidx.compose.foundation.layout.Box
@@ -15,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.eventeasy.R
+import com.example.eventeasy.viewmodel.AuthViewModel
 import kotlinx.coroutines.delay
 
 @Composable

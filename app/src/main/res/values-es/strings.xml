@@ -18,10 +18,10 @@
 
     <!-- Sign Up Screen -->
     <string name="sign_up">Registrarse</string>
-    <string name="full_name">Nombre completo</string>
+    <string name="full_name">Nombre</string>
     <string name="have_account">¿Tienes una cuenta? </string>
     <string name="sign_up_button">Continuar</string>
-
+    <string name="last_name">Apellido</string>
 
 
     <!-- Reset Screen -->
@@ -37,6 +37,7 @@
     <string name="explore_birthday_parties">Fiestas de cumpleaños</string>
 
     <!-- Common Phrases -->
+    <string name="language">Idioma</string>
     <string name="or_label">O</string>
     <string name="sign_in_google">Inicia con Google</string>
     <string name="password">Contraseña</string>

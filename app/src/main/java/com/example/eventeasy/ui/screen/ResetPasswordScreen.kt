@@ -1,6 +1,5 @@
 package com.example.eventeasy.ui.screen
 
-import AuthViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -18,6 +17,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.res.stringResource
 import com.example.eventeasy.R
+import com.example.eventeasy.viewmodel.AuthViewModel
 
 @Composable
 fun ResetPasswordScreen(navController: NavController, authViewModel: AuthViewModel = viewModel()) {

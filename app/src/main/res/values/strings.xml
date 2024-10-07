@@ -20,7 +20,8 @@
     <string name="sign_up">Sign up</string>
     <string name="have_account">Already have an account? </string>
     <string name="sign_up_button">Sign Up</string>
-    <string name="full_name">Full Name</string>
+    <string name="full_name">Name</string>
+    <string name="last_name">Last Name</string>
 
 
     <!-- Reset Screen -->
@@ -36,8 +37,9 @@
     <string name="explore_birthday_parties">Birthday Parties</string>
 
     <!-- Common Phrases -->
+    <string name="language">Language</string>
     <string name="or_label">OR</string>
-        <string name="sign_in_google">Login with Google</string>
+    <string name="sign_in_google">Login with Google</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_in_here">Sign In</string>

@@ -29,10 +29,7 @@ class MainActivity : ComponentActivity() {
 
                 Surface(color = MaterialTheme.colorScheme.background) {
                     Column(modifier = Modifier.fillMaxSize()) {
-                        // DropMenu para selección de idioma
-                        LanguageDropMenu { selectedLanguage ->
-                            changeLanguage(selectedLanguage)
-                        }
+
                         Box(modifier = Modifier.weight(1f)) {
                             AppNavigation(navController = navController)
                         }
@@ -46,8 +43,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    // Método para cambiar el idioma
-    private fun changeLanguage(localeCode: String) {
+     fun changeLanguage(localeCode: String) {
         val locale = Locale(localeCode)
         Locale.setDefault(locale)
         val config = Configuration()
@@ -61,16 +57,13 @@ class MainActivity : ComponentActivity() {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         return navBackStackEntry?.destination?.route
     }
-
-    // Método para guardar el idioma seleccionado
-    private fun saveLanguagePreference(context: Context, languageCode: String) {
+     fun saveLanguagePreference(context: Context, languageCode: String) {
         val sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("language", languageCode).apply()
     }
 
-    // Método para cargar el idioma guardado
-    private fun loadLanguagePreference(context: Context): String? {
+     fun loadLanguagePreference(context: Context): String? {
         val sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("language", "en") // "en" como predeterminado
+        return sharedPreferences.getString("language", "en")
     }
 }
