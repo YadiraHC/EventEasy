@@ -1,9 +1,8 @@
 package com.example.eventeasy
 
-import com.example.eventeasy.ui.components.LanguageDropMenu
-
 import android.os.Bundle
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -43,7 +42,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-     fun changeLanguage(localeCode: String) {
+    fun changeLanguage(localeCode: String) {
         val locale = Locale(localeCode)
         Locale.setDefault(locale)
         val config = Configuration()
@@ -57,13 +56,16 @@ class MainActivity : ComponentActivity() {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         return navBackStackEntry?.destination?.route
     }
-     fun saveLanguagePreference(context: Context, languageCode: String) {
-        val sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
-        sharedPreferences.edit().putString("language", languageCode).apply()
+
+    fun saveLanguagePreference(context: Context, languageCode: String) {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("LANGUAGE_CODE", languageCode)
+        editor.apply()
     }
 
-     fun loadLanguagePreference(context: Context): String? {
-        val sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("language", "en")
+    fun getLanguagePreference(context: Context): String {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("LANGUAGE_CODE", "es") ?: "es" // "es" es el valor predeterminado
     }
 }

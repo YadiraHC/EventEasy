@@ -10,32 +10,28 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.eventeasy.R
 
 @Composable
 fun LanguageDropMenu(selectedLanguage: String, onLanguageSelected: (String) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
-
     val languages = listOf(
-        "select" to Pair(stringResource(id = R.string.language), R.drawable.language),
         "en" to Pair("English", R.drawable.usa),
         "es" to Pair("Español", R.drawable.mexico)
     )
 
     Box(modifier = Modifier.padding(16.dp)) {
+        // Siempre se mostrará el ícono de lenguaje
         Row(modifier = Modifier.clickable { expanded = true }) {
             Image(
-                painter = painterResource(id = languages.first { it.first == selectedLanguage }.second.second),
-                contentDescription = "Language Flag",
+                painter = painterResource(id = R.drawable.language),
+                contentDescription = "Language Icon",
                 modifier = Modifier.size(24.dp)
             )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(text = languages.first { it.first == selectedLanguage }.second.first, color = Color.Black)
         }
 
-
+        // Dropdown para seleccionar idioma
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false }
@@ -54,10 +50,8 @@ fun LanguageDropMenu(selectedLanguage: String, onLanguageSelected: (String) -> U
                         }
                     },
                     onClick = {
-                        if (code != "select") {
-                            expanded = false
-                            onLanguageSelected(code)
-                        }
+                        expanded = false
+                        onLanguageSelected(code)
                     }
                 )
             }

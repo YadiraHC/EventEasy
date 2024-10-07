@@ -1,6 +1,5 @@
 package com.example.eventeasy.ui.screen
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -35,7 +34,7 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
     var rememberMeChecked by remember { mutableStateOf(false) }
 
     // Estado para manejar el idioma seleccionado
-    var selectedLanguage by remember { mutableStateOf("select") } // Por defecto, opción inicial
+    var selectedLanguage by remember { mutableStateOf("en") }
 
     Column(
         modifier = Modifier
@@ -45,11 +44,11 @@ fun SignInScreen(navController: NavController, authViewModel: AuthViewModel = vi
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
     ) {
-
+        // Mostrar el menú de idioma
         LanguageDropMenu(selectedLanguage) { newLanguage ->
             selectedLanguage = newLanguage
-            (navController.context as MainActivity).changeLanguage(newLanguage)
             (navController.context as MainActivity).saveLanguagePreference(navController.context, newLanguage)
+            (navController.context as MainActivity).changeLanguage(newLanguage)
         }
 
         Spacer(modifier = Modifier.height(16.dp))

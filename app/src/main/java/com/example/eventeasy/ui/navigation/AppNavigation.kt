@@ -1,6 +1,6 @@
 package com.example.eventeasy.ui.navigation
 
-import SignUpScreen
+
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.example.eventeasy.ui.screen.ExploreScreen
 import com.example.eventeasy.ui.screen.ResetPasswordScreen
 import com.example.eventeasy.ui.screen.SignInScreen
+import com.example.eventeasy.ui.screen.SignUpScreen
 import com.example.eventeasy.ui.screen.SplashScreen
 import com.example.eventeasy.ui.screen.VerificationScreen
 
