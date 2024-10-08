@@ -22,6 +22,9 @@
     <string name="sign_up_button">Sign Up</string>
     <string name="full_name">Name</string>
     <string name="last_name">Last Name</string>
+    <string name="invalid_email">Invalid e-mail</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="passwords_dont_match">Passwords dont match</string>
 
 
     <!-- Reset Screen -->

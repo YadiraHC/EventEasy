@@ -1,9 +1,11 @@
 package com.example.eventeasy.ui.screen
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -11,11 +13,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.eventeasy.MainActivity
@@ -41,9 +45,19 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
     var confirmPassword by remember { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
 
+    // Estados para rastrear si los campos han sido tocados
+    var emailTouched by remember { mutableStateOf(false) }
+    var passwordTouched by remember { mutableStateOf(false) }
+    var confirmPasswordTouched by remember { mutableStateOf(false) }
+
     val context = navController.context
-    val selectedLanguage = (navController.context as MainActivity).getLanguagePreference(context) // Obtener idioma
+    val selectedLanguage = (navController.context as MainActivity).getLanguagePreference(context)
     val coroutineScope = rememberCoroutineScope()
+
+    // Validaciones
+    val isEmailValid = email.contains("@") && email.contains(".")
+    val isPasswordValid = password.length >= 6
+    val isConfirmPasswordValid = confirmPassword == password
 
     Column(
         modifier = Modifier
@@ -75,8 +89,12 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
                     contentDescription = "Full Name Icon"
                 )
             },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusChanged { /* No se necesita lógica para touched en este campo */ },
+            shape = RoundedCornerShape(12.dp),
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text),
+            singleLine = true
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -92,8 +110,12 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
                     contentDescription = "Last Name Icon"
                 )
             },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusChanged { /* No se necesita lógica para touched en este campo */ },
+            shape = RoundedCornerShape(12.dp),
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text),
+            singleLine = true
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -110,9 +132,18 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
                     contentDescription = "Email Icon"
                 )
             },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusChanged {
+                    if (it.isFocused) emailTouched = true
+                },
+            shape = RoundedCornerShape(12.dp),
+            singleLine = true,
+            isError = emailTouched && !isEmailValid
         )
+        if (emailTouched && !isEmailValid && email.isNotEmpty()) {
+            Text(text = stringResource(id = R.string.invalid_email), color = MaterialTheme.colorScheme.error)
+        }
 
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -137,9 +168,18 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             textStyle = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusChanged {
+                    if (it.isFocused) passwordTouched = true
+                },
+            shape = RoundedCornerShape(12.dp),
+            singleLine = true,
+            isError = passwordTouched && !isPasswordValid
         )
+        if (passwordTouched && !isPasswordValid && password.isNotEmpty()) {
+            Text(text = stringResource(id = R.string.invalid_password), color = MaterialTheme.colorScheme.error)
+        }
 
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -164,15 +204,24 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             textStyle = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusChanged {
+                    if (it.isFocused) confirmPasswordTouched = true
+                },
+            shape = RoundedCornerShape(12.dp),
+            singleLine = true,
+            isError = confirmPasswordTouched && !isConfirmPasswordValid
         )
+        if (confirmPasswordTouched && !isConfirmPasswordValid && confirmPassword.isNotEmpty()) {
+            Text(text = stringResource(id = R.string.passwords_dont_match), color = MaterialTheme.colorScheme.error)
+        }
 
         Spacer(modifier = Modifier.height(38.dp))
 
         Button(
             onClick = {
-                if (fullName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+                if (fullName.isNotEmpty() && lastName.isNotEmpty() && isEmailValid && isPasswordValid && isConfirmPasswordValid) {
                     coroutineScope.launch {
                         val apiClient = ApiClient.getClient(selectedLanguage).create(ApiService::class.java)
                         val signUpRequest = SignUpRequest(
@@ -216,7 +265,46 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel = vi
             shape = RoundedCornerShape(15.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5669FF))
         ) {
-            Text(stringResource(id = R.string.sign_up), color = Color.White, style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(id = R.string.sign_up_button), color = Color.White, style = MaterialTheme.typography.bodyLarge)
+        }
+
+        Spacer(modifier = Modifier.height(28.dp))
+
+        // Agregar el "O" entre los botones
+        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            Text(text = stringResource(id = R.string.or_label), style = MaterialTheme.typography.bodyLarge)
+        }
+
+        Spacer(modifier = Modifier.height(28.dp))
+
+        // Botón para iniciar sesión con Google
+        Button(
+            onClick = { /* Google Sign-In */ },
+            modifier = Modifier.fillMaxWidth().height(56.dp).padding(horizontal = 30.dp),
+            shape = RoundedCornerShape(15.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.google),
+                contentDescription = "Google Icon",
+                modifier = Modifier.size(22.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = stringResource(id = R.string.sign_in_google), style = MaterialTheme.typography.bodyLarge)
+        }
+
+        Spacer(modifier = Modifier.height(23.dp))
+
+        // Texto y botón para redirigir a la pantalla de inicio de sesión
+        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+                Text(text = stringResource(id = R.string.have_account), color = Color(0xFF120D26))
+                TextButton(onClick = {
+                    navController.navigate("signin")
+                }) {
+                    Text(text = stringResource(id = R.string.sign_in_here), color = Color(0xFF5669FF))
+                }
+            }
         }
     }
 }

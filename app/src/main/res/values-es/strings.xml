@@ -22,7 +22,9 @@
     <string name="have_account">¿Tienes una cuenta? </string>
     <string name="sign_up_button">Continuar</string>
     <string name="last_name">Apellido</string>
-
+    <string name="invalid_email">Correo Invalido</string>
+    <string name="invalid_password">Contraseña invalida</string>
+    <string name="passwords_dont_match">Las contraseñas no coinciden</string>
 
     <!-- Reset Screen -->
     <string name="reset_password">Restaurar Contraseña</string>
